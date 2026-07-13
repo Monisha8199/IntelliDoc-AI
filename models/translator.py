@@ -6,11 +6,14 @@ load_dotenv()
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-def generate_summary(text):
+def translate_text(text, language):
     prompt = f"""
-    Summarize the following document in a clear and professional way.
+    Translate the following text into {language}.
 
-    Document:
+    Keep the meaning accurate.
+    Preserve formatting as much as possible.
+
+    Text:
     {text}
     """
 
@@ -22,8 +25,8 @@ def generate_summary(text):
                 "content": prompt
             }
         ],
-        temperature=0.3,
-        max_tokens=1024
+        temperature=0.2,
+        max_tokens=2048
     )
 
     return response.choices[0].message.content
