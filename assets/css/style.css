@@ -1,22 +1,129 @@
-.main-title{
-    text-align:center;
-    color:#1565C0;
-    font-size:52px;
-    font-weight:bold;
+/* ============================= */
+/* IntelliDoc-AI Pro CSS Theme   */
+/* ============================= */
+
+/* Main Background */
+.stApp {
+    background: linear-gradient(135deg, #0f172a, #1e3a8a, #2563eb);
 }
 
-.sub-title{
-    text-align:center;
-    color:#666666;
-    font-size:22px;
-    margin-bottom:30px;
+/* Hide Streamlit Header */
+header {
+    visibility: hidden;
 }
 
-.feature-card{
-    background:#F8F9FA;
-    padding:20px;
-    border-radius:12px;
-    border:1px solid #DDDDDD;
-    text-align:center;
-    box-shadow:0px 2px 6px rgba(0,0,0,0.1);
+/* Title */
+.main-title {
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Subtitle */
+.subtitle {
+    text-align: center;
+    color: #dbeafe;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+/* Metric Box */
+[data-testid="stMetric"] {
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Feature Cards */
+.card {
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 20px;
+    color: white;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+/* Card Colors */
+
+.summary {
+    background: linear-gradient(135deg,#2563eb,#1d4ed8);
+}
+
+.translate {
+    background: linear-gradient(135deg,#16a34a,#15803d);
+}
+
+.chat {
+    background: linear-gradient(135deg,#9333ea,#7e22ce);
+}
+
+.analytics {
+    background: linear-gradient(135deg,#ea580c,#c2410c);
+}
+
+.keyword {
+    background: linear-gradient(135deg,#ca8a04,#a16207);
+}
+
+.sentiment {
+    background: linear-gradient(135deg,#dc2626,#b91c1c);
+}
+
+.quiz {
+    background: linear-gradient(135deg,#0891b2,#0e7490);
+}
+
+.flashcard {
+    background: linear-gradient(135deg,#db2777,#be185d);
+}
+
+.resume {
+    background: linear-gradient(135deg,#7c3aed,#5b21b6);
+}
+
+.compare {
+    background: linear-gradient(135deg,#0284c7,#0369a1);
+}
+
+.history {
+    background: linear-gradient(135deg,#475569,#334155);
+}
+
+.tts {
+    background: linear-gradient(135deg,#0f766e,#115e59);
+}
+
+/* Card Heading */
+.card h3 {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Card Text */
+.card p {
+    color: #f8fafc;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+    font-size: 16px;
+}
+
+/* Divider */
+hr {
+    border: 1px solid rgba(255,255,255,0.3);
 }

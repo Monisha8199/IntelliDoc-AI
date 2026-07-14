@@ -1,45 +1,55 @@
 import streamlit as st
-from PyPDF2 import PdfReader
-from docx import Document
-import models.summarizer as summarizer
+from models.summarizer import generate_summary
+from utils.file_reader import extract_text
+from database.history import save_history
+from utils.pdf_export import create_pdf
+import os
 
-st.title("🤖 AI Document Summarizer")
+st.set_page_config(page_title="AI Summary", page_icon="📄")
+
+st.title("📄 AI Document Summarizer")
 
 uploaded_file = st.file_uploader(
-    "Upload a PDF, DOCX or TXT file",
+    "Upload PDF, DOCX or TXT",
     type=["pdf", "docx", "txt"]
 )
 
-if uploaded_file:
+if uploaded_file is not None:
 
-    text = ""
+    text = extract_text(uploaded_file)
 
-    if uploaded_file.name.endswith(".pdf"):
-        pdf = PdfReader(uploaded_file)
-
-        for page in pdf.pages:
-            page_text = page.extract_text()
-
-            if page_text:
-                text += page_text
-
-    elif uploaded_file.name.endswith(".docx"):
-        doc = Document(uploaded_file)
-
-        for para in doc.paragraphs:
-            text += para.text + "\n"
-
-    else:
-        text = uploaded_file.read().decode("utf-8")
-
-    st.subheader("Extracted Text")
-
-    st.text_area("", text, height=250)
+    st.subheader("Document Preview")
+    st.text_area("", text[:1500], height=250)
 
     if st.button("Generate Summary"):
 
         with st.spinner("Generating Summary..."):
 
-            summary = summarizer.generate_summary(text)
+            summary = generate_summary(text)
 
-        st.success(summary)
+        st.success("Summary Generated Successfully!")
+
+        st.subheader("Summary")
+
+        st.write(summary)
+
+        save_history(
+          "Summary",
+           uploaded_file.name,
+           summary
+       )
+
+        # Create exports folder if it doesn't exist
+        os.makedirs("exports", exist_ok=True)
+
+        pdf_path = "exports/summary.pdf"
+
+        create_pdf(summary, pdf_path)
+
+        with open(pdf_path, "rb") as pdf:
+            st.download_button(
+                label="📥 Download Summary as PDF",
+                data=pdf,
+                file_name="summary.pdf",
+                mime="application/pdf"
+            )

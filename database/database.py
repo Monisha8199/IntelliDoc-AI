@@ -1,21 +1,21 @@
 import sqlite3
 
-# Connect to SQLite database
-conn = sqlite3.connect("database/intellidoc.db")
+conn = sqlite3.connect("database/intellidoc.db", check_same_thread=False)
 
 cursor = conn.cursor()
 
-# Create Users Table
 cursor.execute("""
-CREATE TABLE IF NOT EXISTS users(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL UNIQUE,
-    email TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL
+CREATE TABLE IF NOT EXISTS history(
+
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+feature TEXT,
+
+filename TEXT,
+
+result TEXT
+
 )
 """)
 
 conn.commit()
-conn.close()
-
-print("✅ Database created successfully.")
