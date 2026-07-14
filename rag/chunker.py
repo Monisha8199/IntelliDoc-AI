@@ -1,10 +1,11 @@
-def chunk_text(text, chunk_size=500):
+from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-    words = text.split()
+def split_document(text):
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=500,
+        chunk_overlap=100
+    )
 
-    chunks = []
-
-    for i in range(0, len(words), chunk_size):
-        chunks.append(" ".join(words[i:i+chunk_size]))
+    chunks = splitter.split_text(text)
 
     return chunks

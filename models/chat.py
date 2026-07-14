@@ -1,36 +1,107 @@
-from groq import Groq
-import os
-from dotenv import load_dotenv
+# 🤖 IntelliDoc-AI
 
-load_dotenv()
+An AI-powered document analysis platform built using **Python**, **Streamlit**, **Groq AI**, and **FAISS**.
 
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+---
 
-def chat_with_document(document_text, question):
-    prompt = f"""
-You are an AI document assistant.
+## 🚀 Features
 
-Document:
-{document_text}
+- 📄 AI Document Summarization
+- 💬 AI Chat with Documents
+- 🌐 Document Translation
+- 📊 Document Analytics
+- 🔑 Keyword Extraction
+- 😊 Sentiment Analysis
+- 📝 AI Quiz Generator
+- 🎴 Flashcard Generator
+- 📄 Resume Analyzer
+- 📑 Document Comparison
+- 🔊 Text-to-Speech
+- 🗂 History Management
 
-User Question:
-{question}
+---
 
-Answer the question only using the information in the document.
-If the answer is not present, say:
-'I couldn't find that information in the document.'
-"""
+## 🛠 Technologies Used
 
-    response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        messages=[
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ],
-        temperature=0.2,
-        max_tokens=1024
-    )
+- Python
+- Streamlit
+- Groq API
+- FAISS
+- Sentence Transformers
+- LangChain
+- SQLite
+- PyPDF2
+- python-docx
 
-    return response.choices[0].message.content
+---
+
+## 📂 Project Structure
+
+```
+IntelliDoc-AI/
+│
+├── app.py
+├── assets/
+├── database/
+├── exports/
+├── models/
+├── pages/
+├── rag/
+├── utils/
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## ▶️ Installation
+
+```bash
+git clone https://github.com/Monisha8199/IntelliDoc-AI.git
+```
+
+```bash
+cd IntelliDoc-AI
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+Create a `.env` file:
+
+```env
+GROQ_API_KEY=YOUR_API_KEY
+```
+
+Run the application:
+
+```bash
+streamlit run app.py
+```
+
+---
+
+## 🎯 Future Enhancements
+
+- Advanced RAG Chat
+- User Authentication
+- Cloud Deployment
+- OCR Support
+- Voice Commands
+- Multi-language Support
+
+---
+
+## 👩‍💻 Developer
+
+**Monisha S**
+
+B.Tech Student | AI & Data Science
+
+GitHub:
+https://github.com/Monisha8199
+
+---
+
+⭐ If you like this project, consider giving it a star!
