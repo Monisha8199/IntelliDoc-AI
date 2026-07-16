@@ -1,107 +1,39 @@
-# 🤖 IntelliDoc-AI
+import os
+from dotenv import load_dotenv
+from google import genai
 
-An AI-powered document analysis platform built using **Python**, **Streamlit**, **Groq AI**, and **FAISS**.
+# Load API Key
+load_dotenv()
 
----
+client = genai.Client(
+    api_key=os.getenv("GEMINI_API_KEY")
+)
 
-## 🚀 Features
+def chat_with_document(document_text, question):
+    if not document_text.strip():
+        return "Please upload a document first."
 
-- 📄 AI Document Summarization
-- 💬 AI Chat with Documents
-- 🌐 Document Translation
-- 📊 Document Analytics
-- 🔑 Keyword Extraction
-- 😊 Sentiment Analysis
-- 📝 AI Quiz Generator
-- 🎴 Flashcard Generator
-- 📄 Resume Analyzer
-- 📑 Document Comparison
-- 🔊 Text-to-Speech
-- 🗂 History Management
+    prompt = f"""
+You are an AI assistant.
 
----
+Document:
+{document_text}
 
-## 🛠 Technologies Used
+Question:
+{question}
 
-- Python
-- Streamlit
-- Groq API
-- FAISS
-- Sentence Transformers
-- LangChain
-- SQLite
-- PyPDF2
-- python-docx
+Answer the question only using the document.
+If the answer is not present, say:
+'I couldn't find the answer in the document.'
+"""
 
----
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=prompt
+        )
 
-## 📂 Project Structure
+        return response.text
 
-```
-IntelliDoc-AI/
-│
-├── app.py
-├── assets/
-├── database/
-├── exports/
-├── models/
-├── pages/
-├── rag/
-├── utils/
-├── requirements.txt
-└── README.md
-```
-
----
-
-## ▶️ Installation
-
-```bash
-git clone https://github.com/Monisha8199/IntelliDoc-AI.git
-```
-
-```bash
-cd IntelliDoc-AI
-```
-
-```bash
-pip install -r requirements.txt
-```
-
-Create a `.env` file:
-
-```env
-GROQ_API_KEY=YOUR_API_KEY
-```
-
-Run the application:
-
-```bash
-streamlit run app.py
-```
-
----
-
-## 🎯 Future Enhancements
-
-- Advanced RAG Chat
-- User Authentication
-- Cloud Deployment
-- OCR Support
-- Voice Commands
-- Multi-language Support
-
----
-
-## 👩‍💻 Developer
-
-**Monisha S**
-
-B.Tech Student | AI & Data Science
-
-GitHub:
-https://github.com/Monisha8199
-
----
-
-⭐ If you like this project, consider giving it a star!
+    except Exception as e:
+        return f"Error: {e}"
