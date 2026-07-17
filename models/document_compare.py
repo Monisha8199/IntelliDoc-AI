@@ -30,8 +30,8 @@ Document 2:
         model="llama-3.3-70b-versatile",
         messages=[
             {
-                "role":"user",
-                "content":prompt
+                "role": "user",
+                "content": prompt
             }
         ],
         temperature=0.3,
