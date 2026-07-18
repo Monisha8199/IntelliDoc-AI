@@ -3,6 +3,7 @@ import streamlit as st
 # ---------------------------------------------------
 # Page Configuration
 # ---------------------------------------------------
+
 st.set_page_config(
     page_title="IntelliDoc-AI Pro",
     page_icon="🤖",
@@ -12,6 +13,7 @@ st.set_page_config(
 # ---------------------------------------------------
 # Hero Section
 # ---------------------------------------------------
+
 st.markdown("""
 <div style="
 padding:45px;
@@ -51,7 +53,7 @@ Summarize • Chat • Translate • Analyze • Resume Analysis • Reports
 st.write("")
 
 # ---------------------------------------------------
-# Quick Action Buttons
+# Quick Actions
 # ---------------------------------------------------
 
 col1, col2 = st.columns(2)
@@ -65,35 +67,32 @@ with col2:
 st.write("")
 
 # ---------------------------------------------------
-# Welcome Message
+# Welcome
 # ---------------------------------------------------
 
 st.success("🎉 Welcome to IntelliDoc-AI Pro!")
 
-st.write(
-"""
+st.write("""
 Upload your documents and use Artificial Intelligence to:
 
 - 📄 Summarize documents
 - 💬 Chat with PDFs
-- 🌐 Translate files
+- 🌐 Translate documents
 - 📊 Analyze documents
 - 😊 Perform Sentiment Analysis
 - 🔑 Extract Keywords
-- 📝 Generate Quizzes
+- 📝 Generate AI Quizzes
 - 🎴 Create Flashcards
 - 👤 Analyze Resumes
 - 📑 Compare Documents
 - 🔊 Convert Text to Speech
-"""
-)
-
-st.write("")
+""")
 
 # ---------------------------------------------------
-# Dashboard Statistics
+# Dashboard
 # ---------------------------------------------------
 
+st.markdown("---")
 st.subheader("📊 Dashboard Overview")
 
 m1, m2, m3, m4 = st.columns(4)
@@ -110,50 +109,40 @@ with m3:
 with m4:
     st.metric("🟢 Status", "Online")
 
-st.write("")
-
 # ---------------------------------------------------
-# Available Features
+# Features
 # ---------------------------------------------------
 
+st.markdown("---")
 st.subheader("🚀 Available AI Features")
-
-col1, col2, col3 = st.columns(3)
 
 features = [
     ("📄 AI Summary", "Generate concise summaries from lengthy documents."),
     ("💬 AI Chat", "Chat with your uploaded documents using AI."),
     ("🌐 Translator", "Translate documents into multiple languages."),
     ("📊 Analytics", "View document statistics instantly."),
-    ("😊 Sentiment Analysis", "Identify emotions and sentiment."),
+    ("😊 Sentiment Analysis", "Identify positive, neutral or negative sentiment."),
     ("🔑 Keyword Extraction", "Extract important keywords automatically."),
-    ("📝 Quiz Generator", "Create quizzes from any document."),
-    ("🎴 Flashcards", "Generate study flashcards instantly."),
-    ("👤 Resume Analyzer", "Analyze resumes with AI suggestions."),
+    ("📝 Quiz Generator", "Generate quizzes from your document."),
+    ("🎴 Flashcards", "Create flashcards for quick revision."),
+    ("👤 Resume Analyzer", "Analyze resumes using AI."),
     ("📑 Document Comparison", "Compare two documents side-by-side."),
-    ("📂 History", "View previous uploads and AI responses."),
+    ("📂 History", "View previous AI responses."),
     ("🔊 Text To Speech", "Convert document text into speech.")
 ]
+
+col1, col2, col3 = st.columns(3)
 
 for i, (title, desc) in enumerate(features):
 
     with [col1, col2, col3][i % 3]:
 
         st.markdown(f"""
-        <div style="
-        background:rgba(255,255,255,0.08);
-        padding:20px;
-        border-radius:18px;
-        margin-bottom:18px;
-        border:1px solid rgba(255,255,255,0.10);
-        box-shadow:0 6px 15px rgba(0,0,0,0.15);
-        ">
+        <div class="feature-card">
 
-        <h4 style="color:white;">{title}</h4>
+        <h3>{title}</h3>
 
-        <p style="color:#DCE7FF;">
-        {desc}
-        </p>
+        <p>{desc}</p>
 
         </div>
         """, unsafe_allow_html=True)
@@ -162,38 +151,71 @@ for i, (title, desc) in enumerate(features):
 # Quick Access
 # ---------------------------------------------------
 
-st.write("")
+st.markdown("---")
 st.subheader("⚡ Quick Access")
 
-a1, a2, a3, a4 = st.columns(4)
+q1, q2, q3, q4 = st.columns(4)
 
-with a1:
+with q1:
     st.button("📄 Summary", use_container_width=True)
 
-with a2:
+with q2:
     st.button("💬 Chat", use_container_width=True)
 
-with a3:
-    st.button("🌐 Translate", use_container_width=True)
+with q3:
+    st.button("🌐 Translator", use_container_width=True)
 
-with a4:
+with q4:
     st.button("📊 Analytics", use_container_width=True)
+
+# ---------------------------------------------------
+# System Status
+# ---------------------------------------------------
+
+st.markdown("---")
+st.subheader("🖥️ System Status")
+
+s1, s2, s3 = st.columns(3)
+
+with s1:
+    st.success("🟢 AI Services Online")
+
+with s2:
+    st.info("📂 Ready to Upload Documents")
+
+with s3:
+    st.success("🔒 Secure Processing Enabled")
+
+# ---------------------------------------------------
+# Tips
+# ---------------------------------------------------
+
+st.markdown("---")
+st.subheader("💡 Tips")
+
+st.info("📄 Upload a document before using AI Summary, AI Chat, Analytics, Translation or Document Comparison.")
+
+st.info("💬 Use the sidebar to access all IntelliDoc-AI features.")
+
+st.info("🔒 Your documents remain under your control while using the application.")
 
 # ---------------------------------------------------
 # Footer
 # ---------------------------------------------------
 
-st.write("")
 st.markdown("---")
 
 st.markdown("""
-<div style="text-align:center;color:#BFD8FF;padding:20px;">
+<div style="text-align:center;padding:20px;color:#BFD8FF;">
 
 <h3>🤖 IntelliDoc-AI Pro</h3>
 
 <p>
-Developed by <b>Monisha S</b><br>
 AI Powered Intelligent Document Analysis Platform
+</p>
+
+<p>
+Developed by <b>Monisha S</b>
 </p>
 
 <p>
