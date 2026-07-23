@@ -1,12 +1,12 @@
 import os
 from dotenv import load_dotenv
-from google import genai
+from groq import Groq
 
 # Load API Key
 load_dotenv()
 
-client = genai.Client(
-    api_key=os.getenv("Groq_API_KEY")
+client = Groq(
+    api_key=os.getenv("GROQ_API_KEY")
 )
 
 def chat_with_document(document_text, question):
@@ -28,12 +28,19 @@ If the answer is not present, say:
 """
 
     try:
-        response = client.models.generate_content(
-            model="gemini-2.0-flash",
-            contents=prompt
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            temperature=0.3,
+            max_tokens=1500
         )
 
-        return response.text
+        return response.choices[0].message.content
 
     except Exception as e:
         return f"Error: {e}"
